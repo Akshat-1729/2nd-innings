@@ -4,7 +4,12 @@ import { Bookmark, BookmarkAddOutlined, MoreVert,ThumbUp } from "@mui/icons-mate
 import { useState } from "react";
 
 export default function Post() {
-
+  const [like,setLike] = useState(0)
+  const [isLiked,setIsLiked] = useState(false)
+  const likeHandler=()=>{
+    setLike(isLiked ? like-1: like+1)
+    setIsLiked(!isLiked)
+  }
   return (
     <div className="post">
       <div className="postWrapper">
@@ -30,11 +35,11 @@ export default function Post() {
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">
-            <div className="likeIcon">
+            <div className="likeIcon" onClick={likeHandler}>
               <ThumbUp/>
             </div>
             
-            <span className="postLikeCounter">10 people like it</span>
+            <span className="postLikeCounter">{like}</span>
           </div>
           <div className="postBottomRight">
             <BookmarkAddOutlined/>
